@@ -39,7 +39,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/task", taskRouter);
 app.use("/api/team", teamRouter);
 
-// Error Handeling Middleware
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.statusCode || 500;
