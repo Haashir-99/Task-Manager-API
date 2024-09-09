@@ -15,6 +15,9 @@ const teamRouter = require("./routes/team");
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'public')))
+
+
 const MONGO_URI = process.env.DB_CONNECTION_STRING;
 const PORT = process.env.PORT || 3000;
 
@@ -33,6 +36,10 @@ app.use((req, res, next) => {
 
 app.use(helmet());
 app.use(compression());
+
+app.use('/', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 // Routes
 app.use("/api/auth", authRouter);
