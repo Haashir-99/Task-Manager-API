@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const compression = require("compression");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swaggerConfig");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
+app.use(cors());
 
 app.use(helmet());
 app.use(compression());
