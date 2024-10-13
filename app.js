@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const compression = require("compression");
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swaggerConfig");
 
 require("dotenv").config();
 
@@ -15,8 +17,7 @@ const teamRouter = require("./routes/team");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(express.static(path.join(__dirname, "public")));
 
 const MONGO_URI = process.env.DB_CONNECTION_STRING;
 const PORT = process.env.PORT || 3000;
@@ -37,14 +38,18 @@ app.use((req, res, next) => {
 app.use(helmet());
 app.use(compression());
 
-app.use('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+// Swagger Docs
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/task", taskRouter);
 app.use("/api/team", teamRouter);
+
+//Intro Page Render
+app.use("/", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.use((error, req, res, next) => {
   console.log(error);
@@ -55,8 +60,14 @@ app.use((error, req, res, next) => {
 });
 
 mongoose.connect(MONGO_URI).then(() => {
-  console.log("</> - Connected to Database - </>");
+  if (process.env.NODE_ENV !== "production") {
+    console.log("</> - Connected to Database - </>");
+  }
+
   app.listen(PORT, () => {
-    console.log("</> - Started Server - </>");
+    if (process.env.NODE_ENV !== "production") {
+      console.log("</> - Started Server - </>");
+      console.log(`</> - Link: http://localhost:${PORT} - </>`);
+    }
   });
 });
