@@ -61,10 +61,15 @@ app.use(
       imgSrc: ["'self'", "data:"],
       connectSrc: ["'self'", "https://task-manager-api-wheat.vercel.app"],
       objectSrc: ["'none'"],
+      frameSrc: [
+        "'self'",
+        "https://vercel.live", // Allow frames from vercel.live
+      ],
       upgradeInsecureRequests: [],
     },
   })
 );
+
 
 app.use(compression());
 
