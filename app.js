@@ -48,27 +48,35 @@ app.use(
       scriptSrc: [
         "'self'",
         "https://cdnjs.cloudflare.com",
-        "https://task-manager-api-wheat.vercel.app", // Your domain
-        "https://vercel.live", // Vercel feedback script
-        "'unsafe-inline'", // If necessary
-        "'unsafe-eval'", // If necessary
+        "https://task-manager-api-wheat.vercel.app",
+        "https://vercel.live",
+        "'unsafe-inline'", 
+        "'unsafe-eval'", 
       ],
       styleSrc: [
         "'self'",
-        "https://cdnjs.cloudflare.com",
         "'unsafe-inline'",
+        "https://cdnjs.cloudflare.com",
+        "https://vercel.live",
       ],
       imgSrc: ["'self'", "data:"],
-      connectSrc: ["'self'", "https://task-manager-api-wheat.vercel.app"],
-      objectSrc: ["'none'"],
-      frameSrc: [
+      connectSrc: [
         "'self'",
-        "https://vercel.live", // Allow frames from vercel.live
+        "https://task-manager-api-wheat.vercel.app",
+        "wss://ws-us3.pusher.com",
+        "https://sockjs-us3.pusher.com",
       ],
+      objectSrc: ["'none'"],
+      frameSrc: ["'self'", "https://vercel.live"],
+      fontSrc: [
+        "'self'", 
+        "https://vercel.live",  
+      ], 
       upgradeInsecureRequests: [],
     },
   })
 );
+
 
 
 app.use(compression());
