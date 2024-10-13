@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const compression = require("compression");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swaggerConfig");
+const swaggerUiAssets = require('swagger-ui-dist').absolutePath();
 const cors = require("cors");
 
 // CDN CSS
@@ -82,6 +83,7 @@ app.use(
 app.use(compression());
 
 // Swagger Docs
+app.use('/api/docs', express.static(swaggerUiAssets));
 // app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 
