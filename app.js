@@ -12,7 +12,7 @@ const swaggerUiAssets = require('swagger-ui-dist').absolutePath();
 const cors = require("cors");
 
 // CDN CSS
-const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+// const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 require("dotenv").config();
 
@@ -84,8 +84,8 @@ app.use(compression());
 
 // Swagger Docs
 app.use('/api/docs', express.static(swaggerUiAssets));
-// app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+// app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 
 // Routes
 app.use("/api/auth", authRouter);
