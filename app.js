@@ -10,6 +10,9 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swaggerConfig");
 const cors = require("cors");
 
+// CDN CSS
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 require("dotenv").config();
 
 const authRouter = require("./routes/auth");
@@ -38,10 +41,27 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://your-domain.com", // Replace with your domain
+        "https://task-manager-api-wheat.vercel.app", // Adjust based on your needs
+        "https://cdnjs.cloudflare.com", // Example external source, add others if needed
+        "'unsafe-inline'", // Only if absolutely necessary
+        "'unsafe-eval'", // Only if absolutely necessary, use with caution
+      ],
+      // Add other directives as needed
+    },
+  })
+);
+
 app.use(compression());
 
 // Swagger Docs
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 
 // Routes
 app.use("/api/auth", authRouter);
