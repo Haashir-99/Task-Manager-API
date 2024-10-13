@@ -44,31 +44,32 @@ app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"], // Allow resources from the same domain
+      defaultSrc: ["'self'"],
       scriptSrc: [
-        "'self'", // Scripts from the same domain
-        "https://cdnjs.cloudflare.com", // For Swagger UI's JavaScript
-        "https://task-manager-api-wheat.vercel.app", // If you are hosting scripts here
-        "'unsafe-inline'", // Allow inline scripts (may be needed for Swagger UI)
-        "'unsafe-eval'", // Only if Swagger UI needs to evaluate JS (use with caution)
+        "'self'",
+        "https://cdnjs.cloudflare.com",
+        "https://task-manager-api-wheat.vercel.app", // Your domain
+        "https://vercel.live", // Vercel feedback script
+        "'unsafe-inline'", // If necessary
+        "'unsafe-eval'", // If necessary
       ],
       styleSrc: [
-        "'self'", // Styles from the same domain
-        "https://cdnjs.cloudflare.com", // For Swagger UI's CSS
-        "'unsafe-inline'", // For inline CSS (e.g., styles applied dynamically)
+        "'self'",
+        "https://cdnjs.cloudflare.com",
+        "'unsafe-inline'",
       ],
-      imgSrc: ["'self'", "data:"], // Allow images from same domain and base64-encoded images
-      connectSrc: ["'self'", "https://task-manager-api-wheat.vercel.app"], // Allow connections to your API
-      objectSrc: ["'none'"], // Disallow Flash and other plugins
-      upgradeInsecureRequests: [], // Optional: Forces HTTPS
+      imgSrc: ["'self'", "data:"],
+      connectSrc: ["'self'", "https://task-manager-api-wheat.vercel.app"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
     },
   })
 );
 
-
 app.use(compression());
 
 // Swagger Docs
+// app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 
 // Routes
