@@ -3,6 +3,7 @@
   "builds": [{ "src": "app.js", "use": "@vercel/node" }],
   "routes": [
     { "src": "/(.*)", "dest": "app.js" },
+    { "src": "/api/docs/(.*)", "dest": "/node_modules/swagger-ui-dist/$1" },
     {
       "src": "/api/docs/swagger-ui.css",
       "dest": "/node_modules/swagger-ui-dist/swagger-ui.css"
