@@ -44,19 +44,27 @@ app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
+      defaultSrc: ["'self'"], // Allow resources from the same domain
       scriptSrc: [
-        "'self'",
-        "https://your-domain.com", // Replace with your domain
-        "https://task-manager-api-wheat.vercel.app", // Adjust based on your needs
-        "https://cdnjs.cloudflare.com", // Example external source, add others if needed
-        "'unsafe-inline'", // Only if absolutely necessary
-        "'unsafe-eval'", // Only if absolutely necessary, use with caution
+        "'self'", // Scripts from the same domain
+        "https://cdnjs.cloudflare.com", // For Swagger UI's JavaScript
+        "https://task-manager-api-wheat.vercel.app", // If you are hosting scripts here
+        "'unsafe-inline'", // Allow inline scripts (may be needed for Swagger UI)
+        "'unsafe-eval'", // Only if Swagger UI needs to evaluate JS (use with caution)
       ],
-      // Add other directives as needed
+      styleSrc: [
+        "'self'", // Styles from the same domain
+        "https://cdnjs.cloudflare.com", // For Swagger UI's CSS
+        "'unsafe-inline'", // For inline CSS (e.g., styles applied dynamically)
+      ],
+      imgSrc: ["'self'", "data:"], // Allow images from same domain and base64-encoded images
+      connectSrc: ["'self'", "https://task-manager-api-wheat.vercel.app"], // Allow connections to your API
+      objectSrc: ["'none'"], // Disallow Flash and other plugins
+      upgradeInsecureRequests: [], // Optional: Forces HTTPS
     },
   })
 );
+
 
 app.use(compression());
 
