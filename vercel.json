@@ -4,13 +4,5 @@
   "routes": [
     { "src": "/api/docs/(.*)", "dest": "/node_modules/swagger-ui-dist/$1" },
     { "src": "/(.*)", "dest": "app.js" }
-  ],
-  "headers": [
-    {
-      "source": "/api/docs/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
-      ]
-    }
   ]
 }
