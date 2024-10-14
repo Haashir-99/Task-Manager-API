@@ -8,11 +8,7 @@ const helmet = require("helmet");
 const compression = require("compression");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swaggerConfig");
-// const swaggerUiAssets = require('swagger-ui-dist').absolutePath();
 const cors = require("cors");
-
-// CDN CSS
-// const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 require("dotenv").config();
 
@@ -42,49 +38,46 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use(helmet());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "https://cdnjs.cloudflare.com",
-        "https://task-manager-api-wheat.vercel.app",
-        "https://vercel.live",
-        "'unsafe-inline'", 
-        "'unsafe-eval'", 
-      ],
-      styleSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        "https://cdnjs.cloudflare.com",
-        "https://vercel.live",
-      ],
-      imgSrc: ["'self'", "data:"],
-      connectSrc: [
-        "'self'",
-        "https://task-manager-api-wheat.vercel.app",
-        "wss://ws-us3.pusher.com",
-        "https://sockjs-us3.pusher.com",
-      ],
-      objectSrc: ["'none'"],
-      frameSrc: ["'self'", "https://vercel.live"],
-      fontSrc: [
-        "'self'", 
-        "https://vercel.live",  
-      ], 
-      upgradeInsecureRequests: [],
-    },
-  })
-);
-
-
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: [
+//         "'self'",
+//         "https://cdnjs.cloudflare.com",
+//         "https://task-manager-api-wheat.vercel.app",
+//         "https://vercel.live",
+//         "'unsafe-inline'", 
+//         "'unsafe-eval'", 
+//       ],
+//       styleSrc: [
+//         "'self'",
+//         "'unsafe-inline'",
+//         "https://cdnjs.cloudflare.com",
+//         "https://vercel.live",
+//       ],
+//       imgSrc: ["'self'", "data:"],
+//       connectSrc: [
+//         "'self'",
+//         "https://task-manager-api-wheat.vercel.app",
+//         "wss://ws-us3.pusher.com",
+//         "https://sockjs-us3.pusher.com",
+//       ],
+//       objectSrc: ["'none'"],
+//       frameSrc: ["'self'", "https://vercel.live"],
+//       fontSrc: [
+//         "'self'", 
+//         "https://vercel.live",  
+//       ], 
+//       upgradeInsecureRequests: [],
+//     },
+//   })
+// );
 
 app.use(compression());
 
 // Swagger Docs
-// app.use('/api/docs', express.static(swaggerUiAssets));
-app.use('/api/docs', express.static(path.join(__dirname, 'node_modules', 'swagger-ui-dist')));
+// app.use('/api/docs', express.static(path.join(__dirname, 'node_modules', 'swagger-ui-dist')));
 // app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
