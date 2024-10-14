@@ -42,41 +42,41 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use(helmet());
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       scriptSrc: [
-//         "'self'",
-//         "https://cdnjs.cloudflare.com",
-//         "https://task-manager-api-wheat.vercel.app",
-//         "https://vercel.live",
-//         "'unsafe-inline'", 
-//         "'unsafe-eval'", 
-//       ],
-//       styleSrc: [
-//         "'self'",
-//         "'unsafe-inline'",
-//         "https://cdnjs.cloudflare.com",
-//         "https://vercel.live",
-//       ],
-//       imgSrc: ["'self'", "data:"],
-//       connectSrc: [
-//         "'self'",
-//         "https://task-manager-api-wheat.vercel.app",
-//         "wss://ws-us3.pusher.com",
-//         "https://sockjs-us3.pusher.com",
-//       ],
-//       objectSrc: ["'none'"],
-//       frameSrc: ["'self'", "https://vercel.live"],
-//       fontSrc: [
-//         "'self'", 
-//         "https://vercel.live",  
-//       ], 
-//       upgradeInsecureRequests: [],
-//     },
-//   })
-// );
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://cdnjs.cloudflare.com",
+        "https://task-manager-api-wheat.vercel.app",
+        "https://vercel.live",
+        "'unsafe-inline'", 
+        "'unsafe-eval'", 
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://cdnjs.cloudflare.com",
+        "https://vercel.live",
+      ],
+      imgSrc: ["'self'", "data:"],
+      connectSrc: [
+        "'self'",
+        "https://task-manager-api-wheat.vercel.app",
+        "wss://ws-us3.pusher.com",
+        "https://sockjs-us3.pusher.com",
+      ],
+      objectSrc: ["'none'"],
+      frameSrc: ["'self'", "https://vercel.live"],
+      fontSrc: [
+        "'self'", 
+        "https://vercel.live",  
+      ], 
+      upgradeInsecureRequests: [],
+    },
+  })
+);
 
 
 
