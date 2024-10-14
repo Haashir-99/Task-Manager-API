@@ -16,5 +16,13 @@
       "src": "/api/docs/swagger-ui-standalone-preset.js",
       "dest": "/node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
   ]
 }
