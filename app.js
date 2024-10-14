@@ -77,7 +77,7 @@ app.use(helmet());
 app.use(compression());
 
 // Swagger Docs
-// app.use('/api/docs', express.static(path.join(__dirname, 'node_modules', 'swagger-ui-dist')));
+app.use('/swagger-static', express.static(path.join(__dirname, 'node_modules', 'swagger-ui-dist')));
 // app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec, {customCee_url: CSS_URL}));
 app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
