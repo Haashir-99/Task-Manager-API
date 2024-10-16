@@ -141,6 +141,89 @@ const swaggerDefinition = {
           },
         },
       },
+      Team: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+            example: "64758a3342f0910234ac95a2",
+          },
+          title: {
+            type: "string",
+            example: "Development Team",
+          },
+          members: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Member",
+            },
+          },
+          createdAt: {
+            type: "string",
+            format: "date-time",
+            example: "2023-10-12T09:32:45.234Z",
+          },
+          updatedAt: {
+            type: "string",
+            format: "date-time",
+            example: "2023-10-12T09:35:23.567Z",
+          },
+        },
+      },
+      Member: {
+        type: "object",
+        properties: {
+          memberId: {
+            type: "string",
+            example: "64758a3342f0910234ac95b3",
+          },
+          role: {
+            type: "string",
+            example: "member",
+            enum: ["member", "contributor", "editor", "projectManager"],
+          },
+          joinedAt: {
+            type: "string",
+            format: "date-time",
+            example: "2023-10-12T09:32:45.234Z",
+          },
+          updatedAt: {
+            type: "string",
+            format: "date-time",
+            example: "2023-10-12T09:35:23.567Z",
+          },
+        },
+      },
+      Error: {
+        type: "object",
+        properties: {
+          message: {
+            type: "string",
+            example: "An error occurred while processing your request.",
+          },
+          code: {
+            type: "integer",
+            example: 400,
+          },
+        },
+      },
+      Pagination: {
+        type: "object",
+        properties: {
+          currentPage: {
+            type: "integer",
+            example: 1,
+          },
+          totalPages: {
+            type: "integer",
+            example: 5,
+          },
+          totalItems: {
+            type: "integer",
+            example: 100,
+          },
+        },
+      },
     },
     securitySchemes: {
       BearerAuth: {

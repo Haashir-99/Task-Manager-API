@@ -11,7 +11,7 @@ const router = express.Router();
  * /api/task:
  *  get:
  *    summary: Get all tasks for the authenticated user
- *    tags: [Task]
+ *    tags: [Tasks]
  *    security:
  *      - BearerAuth: []
  *    parameters:
@@ -63,7 +63,7 @@ router.get("/", isAuth, taskController.getAllTasks);
  * /api/task/{id}:
  *  get:
  *    summary: Get a task by ID for the authenticated user
- *    tags: [Task]
+ *    tags: [Tasks]
  *    security:
  *      - BearerAuth: []
  *    parameters:
@@ -98,7 +98,7 @@ router.get("/:id", isAuth, taskController.getTaskById);
  * /api/task:
  *  post:
  *    summary: Create a new task
- *    tags: [Task]
+ *    tags: [Tasks]
  *    security:
  *      - BearerAuth: []
  *    requestBody:
@@ -137,7 +137,7 @@ router.post("/", isAuth, taskController.createTask);
  * /api/task/{id}:
  *  put:
  *    summary: Update a task by ID
- *    tags: [Task]
+ *    tags: [Tasks]
  *    security:
  *      - BearerAuth: []
  *    parameters:
@@ -188,7 +188,7 @@ router.put("/:id", isAuth, taskController.updateTask);
  * /api/task/{id}:
  *  delete:
  *    summary: Delete a task by ID
- *    tags: [Task]
+ *    tags: [Tasks]
  *    security:
  *      - BearerAuth: []
  *    parameters:

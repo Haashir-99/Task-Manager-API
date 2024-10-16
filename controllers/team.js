@@ -246,7 +246,7 @@ exports.updateTeamMemberRole = async (req, res, next) => {
   const userId = req.userId;
   const teamId = req.params.teamId;
   const memberId = req.body.memberId;
-  const newRole = req.body.role;
+  const newRole = req.query.role;
   const userRole = req.userRole;
   try {
     if (userRole !== "creator" && userRole !== "admin") {

@@ -12,6 +12,12 @@ const router = express.Router();
  * tags:
  *  - name: Authentication
  *    description: Contains Endpoints that handles authentication such as signup and login etc.
+ *  - name: Tasks
+ *    description: Contains Endpoints that handles all CRUD + additional operations for tasks.
+ *  - name: Teams
+ *    description: Contains Endpoints that handles all CRUD + additional operations for teams.
+ *  - name: Team Tasks
+ *    description: Contains Endpoints that handles all CRUD + additional operations for tasks within a team.
  * /api/auth/register:
  *  post:
  *    summary: SignUp a new user
