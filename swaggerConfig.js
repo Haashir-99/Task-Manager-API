@@ -9,10 +9,10 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:3000",
+      url: "https://task-manager-api-wheat.vercel.app",
     },
     {
-      url: "https://task-manager-api-wheat.vercel.app",
+      url: "http://localhost:3000",
     },
   ],
   components: {
